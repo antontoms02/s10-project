@@ -294,7 +294,7 @@ window.onclick = function(event) {
                 <div class="form-group">
                     <select name="payment_mode" class="form-control" required>
                         <option value="" selected disabled>-Select Payment Mode-</option>
-                        <option value="1">Cash On Delivery</option>
+                        <option value="1">Cash On Deliveryyy</option>
                     </select>
                 </div>
                 <div class="form-group">
