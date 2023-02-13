@@ -5,45 +5,30 @@ $grand_total = 0;
 if (!isset($_SESSION["email"])) {
     header("Location:login.php");
 }
-
-if (isset($_POST['submit'])) {
-    $id = $_SESSION['id'];
-    $order_date = date("Y-m-d H:i:s");
-    $customer_name = $_POST['name'];
-    $customer_email = $_POST['email'];
-    $customer_phone = $_POST['phone'];
-    $customer_address = $_POST['address'];
-    $payment_mode = $_POST['payment_mode'];
-    $total_amount = $_POST['total_amount'];
-    //Insert to orders table
-    $sql = "INSERT INTO tbl_order (id, order_date, customer_name, customer_email, customer_phone, customer_address, payment_mode, total_amount) VALUES ('$id', '$order_date', '$customer_name', '$customer_email', '$customer_phone', '$customer_address', '$payment_mode', '$total_amount')";
-    $result = mysqli_query($con, $sql);
-    $order_id = mysqli_insert_id($con);
-    if (!empty($order_id)) {
-        foreach ($_POST['items'] as $key => $product_id) {
-            $id = $_POST['cart_ids'][$key];
-            $quantity = $_POST['quantity'][$key];
-            $price = $_POST['price'][$key];
-            $total_price = $quantity * $price;
-            $sql = "INSERT INTO order_items (order_id, product_id, quantity, price, total_price) VALUES ('$order_id', '$product_id', '$quantity', '$price', '$total_price')";
-            $result = mysqli_query($con, $sql);
-            // update cart table status
-            $sql = "UPDATE cart SET is_checked_out = 1 WHERE id = $id";
-            $result = mysqli_query($con, $sql);
-            if ($result) {
-                // reduce Total_quantity from product table
-                $sql = "UPDATE tbl_products SET qty = qty - $quantity WHERE product_id = $product_id";
-                $result = mysqli_query($con, $sql);
-            }
-        }
-        header("Location:products.php");
-    }
+$sql=mysqli_query($con,"SELECT * FROM tbl_cart");
+          while ($row = mysqli_fetch_array($sql)) {
+         $grand_total=$grand_total+($row['cart_qty'] * $row['Product_Price']);
+     }
+     $reg=$_SESSION['email'];
+  $result=mysqli_query($con,"SELECT * FROM `register`  where `email`='$reg'");
+  while ($rows= mysqli_fetch_array($result)) {
+    $name=$rows['name'];
+    $email=$rows['email'];
+    $mob=$rows['mob'];
+    $address=$rows['address'];
 }
-
-$sql = mysqli_query(
-    $con,
-    "SELECT c.id, c.product_id, p.product_name, c.cart_qty, p.Product_price FROM cart c INNER JOIN product p ON p.product_id = c.product_id WHERE c.id=" . $_SESSION['email'] . " AND c.is_checked_out=0"
-);
+if(isset($_POST['submit']))
+   {
+     $name=mysqli_real_escape_string($con,$_POST['name']);
+     $address=mysqli_real_escape_string($con,$_POST['address']);
+     $mob=mysqli_real_escape_string($con,$_POST['phone']);
+     $email=mysqli_real_escape_string($con,$_POST['email']);
+     $value=mysqli_real_escape_string($con,$_POST['payment_mode']);
+     $qur1 = mysqli_query($con,"UPDATE register SET name='$name',address='$address',mob='$mob',email='$email'  where email='$reg'");
+     if ( $qur1 === TRUE AND $value == "1"){
+    header("location:order_add.php"); 
+     }
+   }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -188,6 +173,7 @@ window.onclick = function(event) {
     }
   }
 }
+
 </script>
 
                                 <style>
@@ -259,36 +245,25 @@ window.onclick = function(event) {
                 <h4 class="text-center text-info p-2">Complete your order!</h4>
                 <div class="container">
                     <h4>Price Details</h4>
-                    <?php
-                    // while ($row = mysqli_fetch_array($sql)) {
-                    //     $sub_total = $row['quantity'] * $row['price'];
-                    //     $grand_total += $sub_total;
-                    //     ?> 
-                        <!-- <input type="hidden" name="items[]" value="<?= $row['proudect_Title'] ?>">
-                        <input type="hidden" name="quantity[]" value="<?= $row['cart_qty'] ?>">
-                        <input type="hidden" name="price[]" value="<?= $row['Product_price'] ?>">
-                        <input type="hidden" name="cart_ids[]" value="<?= $row['id'] ?>">
-                        <p><?= $row['product_name'] ?> <span class="price">₹ <?= $sub_total ?></span></p>-->
-                      
+                    
                     <hr class="hr">
                     <p>Total <span class="price" style="color:black"><b>₹ <?= $grand_total ?></b></span></p>
                 </div>
 
                 <input type="hidden" name="total_amount" value="<?= $grand_total; ?>">
                 <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Enter Name"  minlength="5"
+                    <input type="text" name="name" value=<?php echo $name?> class="form-control" placeholder="Enter Name"  minlength="5"
       maxlength="50" pattern="\S(.*\S)?" required >
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Enter E-Mail"  required>
+                    <input type="email" name="email" value=<?php echo $email?> class="form-control" placeholder="Enter E-Mail"  required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" name="phone" class="form-control" placeholder="Enter Phone" pattern="[7-9]{1}[0-9]{9}" 
-       title="Phone number with 7-9 and remaing 9 digit with 0-9" required>
+                    <input type="number" name="phone"  class="form-control" placeholder="Enter Phone" value=<?php echo $mob?> pattern="[7-9]{1}[0-9]{9}" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="address" class="form-control" rows="3" cols="10"
-                              placeholder="Enter Delivery Address Here..."></textarea>
+                    <input type="text" name="address" value=<?php echo $address?> class="form-control" rows="3" cols="10"
+                              placeholder="Enter Delivery Address Here...">
                 </div>
                 <h6 class="text-center lead">Select Payment Mode</h6>
                 <div class="form-group">
@@ -304,6 +279,7 @@ window.onclick = function(event) {
         </div>
     </div>
 </form>
+                     
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
 </body>

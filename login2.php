@@ -70,10 +70,6 @@ font-weight:bold;
 <?php 
   include 'connection.php';
   $msg="";
-   if(isset($_SESSION["email"]))
-   {
-      header("Location:./");
-   }
 
    if (isset($_GET['verification'])) {
     if (mysqli_num_rows(mysqli_query($con, "SELECT * FROM tbllogin WHERE code='{$_GET['verification']}'")) > 0) {
@@ -83,7 +79,7 @@ font-weight:bold;
             echo("<div class='alert alert-info'>Account verification has been successfully completed.</div>");
         }
     } else {
-        header("Location: login2.php");
+        header("Location:login2.php");
     }
 }
 

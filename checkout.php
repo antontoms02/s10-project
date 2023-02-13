@@ -15,8 +15,6 @@
     
    if(isset($_POST['signup']))
    {
-     // receiving the values entered and storing in the variables
-     //data sanitization is done to prevent SQL injections
      $pin=mysqli_real_escape_string($con,$_POST['pin']);
      $address=mysqli_real_escape_string($con,$_POST['address']);
     
