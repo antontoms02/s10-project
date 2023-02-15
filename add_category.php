@@ -109,6 +109,18 @@
                     </a>
                 </li>
                 <li>
+                   <a href="update_stock.php" >
+                        <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Stock Updation</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_order.php">
+                        <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Manage Order</span>
+                    </a>
+                </li>
+                <li>
                     <a href="logout.php ">
                         <span class="icon icon-8"><i class="ri-logout-box-r-line"></i></span>
                         <span class="sidebar--item">Logout</span>

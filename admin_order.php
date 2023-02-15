@@ -50,7 +50,7 @@ session_start();
 <body>
 <section class="header">
         <div class="logo">
-        <h2>RAZER</h2>
+        <h2>TESLA</h2>
         </div>
         <div class="search--notification--profile">
                 <div>

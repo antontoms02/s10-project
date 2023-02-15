@@ -1,23 +1,17 @@
 <?php
 include('connection.php');
-if(isset($_POST['insert_brand'])){
-    $brand_title=$_POST['brand_title'];
-  
-    //select data from database
-    $select_query="select * from tbl_brands where brand_title='$brand_title'";
-    $result_select=mysqli_query($con,$select_query);
-    $number=mysqli_num_rows($result_select);
-    if($number>0){
-      echo "<script>alert('This brand is present inside the database.')</script>";
-    }else{
-  
-    $insert_query ="INSERT INTO `tbl_brands`( `brand_title`) VALUES ('$brand_title')";
-    $result=mysqli_query($con,$insert_query);
-    if($result){
-      echo "<script>alert('Brand has been inserted successfully')</script>";
-    }
+  $sql="SELECT * FROM  tbl_products";
+  $result = mysqli_query($con,$sql);
+  if(isset($_POST['stock'])){
+      $product_title=$_POST['product_title'];
+      $qty=$_POST['Quatity'];
+      $quantity=$qty + $_POST['qty'];
+      $insert_products="UPDATE `tbl_products` SET qty='$quantity' WHERE product_title='$product_title';";
+      $result_query=mysqli_query($con,$insert_products);
+      if($result_query){
+          echo "<script>alert('Stock Updated.')</script>";
+      }
   }
-}
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +67,7 @@ if(isset($_POST['insert_brand'])){
                     </a>
                 </li>
                 <li>
-                <a href="insert_brands.php" id="active--link">
+                <a href="insert_brands.php" >
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">Add brands</span>
                     </a>
@@ -85,7 +79,7 @@ if(isset($_POST['insert_brand'])){
                     </a>
                 </li>
                 <li>
-                   <a href="update_stock.php">
+                   <a href="update_stock.php" id="active--link">
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">Stock Updation</span>
                     </a>
@@ -104,17 +98,40 @@ if(isset($_POST['insert_brand'])){
     <div class="input-group w-90 mb-2">
         <span class="input-group-text bg-info" id="basic-addon1">
         <i class="fa-solid fa-receipt"></i></span>
-        
-    <div class="table">
-                    <table>
-                    <tr>
-						<td ><b>brands</b></td>
-				    </tr> 
-                    <tr>
-                    <td><input type="text" name="brand_title" id="cd" autocomplete="off"required></td>
-                    <td><input type="submit" value="Add" id="btn" name="insert_brand"  class="btn"></td>
-                    </tr>
-                    </table>
+        <table>
+                        <thead>
+                            <tr>
+                            <th>Product_image</th>
+                            <th >Proudect_Title</th>
+                            <th>Current_Stock</th>
+                            <th>Update</th>
+                            <th>Manage</th>
+                            <th></th>
+                            </tr>
+                        </thead>
+                       <!-- PHP CODE TO FETCH DATA FROM ROWS -->
+            <?php
+                // LOOP TILL END OF DATA
+                while($rows=$result->fetch_assoc())
+                {
+            ?>
+            <tr>
+                 <td><img src="product_images/<?php echo $rows['product_image1'];?>" width="90px" height="50px"></td>
+                <td><?php echo $rows['product_title'];?></td>
+                <td><?php echo $rows['qty'];?></td>
+                <form method="post" action="" enctype="multipart/form-data" id="signup">
+                <input type="hidden" name="product_title" id="product_title" value="<?php echo $rows['product_title'];?>">
+                <input type="hidden" name="Quatity" id="Quatity" value="<?php echo $rows['qty'];?>">
+                <td>Quantity:<input type="number" min="1" name="qty" id="qty" max=10 value="1"></td>
+                <td><input type="submit" value="Update" class="stock" name="stock"></tb>
+            </tr>
+                </form>
+            <?php
+                }
+            ?>
+
+         </table>
+
 </form>
         
 

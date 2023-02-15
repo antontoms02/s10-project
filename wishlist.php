@@ -309,7 +309,7 @@ $result = mysqli_query($con,$sql);
         <div class="col-lg-4 offset-lg-4">
         <div class="checkout" style="background-color:blue; margin-top:15px; padding:10px;">
             <ul>
-                <li style="text-align:center; ;"><a style="color:white; font-size:20px;"  href="product.php">Continue Shopping</a>
+                <li style="text-align:center; ;"><a style="color:white; font-size:20px;"  href="index.php">Continue Shopping</a>
                 </li>
                 
             </ul>

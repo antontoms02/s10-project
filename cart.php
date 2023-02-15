@@ -59,7 +59,7 @@ $total=0;
         
         <style>
      .table {
-        margin-top:10 0px;
+        margin-top:100px;
     }       
     table {
         width: 70%;
@@ -109,7 +109,7 @@ $total=0;
                             <div class="limit-box">
                                 <nav class="main-menu">
                                     <ul class="menu-area-main">
-                                        <li><a href="usedgoods.php">used goods</a></li>
+                                        <li><a href="index.php">Home</a></li>
                                         <?php if( isset($_SESSION['email']) && !empty($_SESSION['email']) )
                             { ?>
                              <li class="nav-item">

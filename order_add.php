@@ -16,6 +16,12 @@ $title=$rows['Proudect_Title'];
 $qty=$rows['cart_qty'];
 $price=$rows['Product_Price'];
 $total=$rows['cart_qty'] * $rows['product_price'];
+$che=mysqli_query($con,"SELECT * FROM `tbl_products` where product_title='$title';");
+while($row = mysqli_fetch_array($che))
+   {
+    $qt=$row['qty'] - $qty;
+    mysqli_query($con,"UPDATE `tbl_products` SET `qty`='$qt' WHERE product_title='$title';");
+}
 }
 $insert_products="INSERT INTO `order_items`(product_title ,img,quantity,price) VALUES ('$title','$image','$qty','$price')";
 $result_query=mysqli_query($con,$insert_products);

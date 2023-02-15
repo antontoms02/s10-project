@@ -1,6 +1,7 @@
 <?php
 
  include 'connection.php';
+ include 'google_translater.php';
  
  if(!isset($_SESSION["email"])) 
  {
@@ -18,7 +19,7 @@
         $result_query=mysqli_query($con,$insert_products);
         if($result_query){
             echo "<script>alert('Successfully inserted the products.')</script>";
-        }
+        }}
         if(isset($_POST['wishlist'])){
             $title=$_POST['product_title'];
             $image1=$_POST['product_image1'];
@@ -32,12 +33,26 @@
                 echo "<script>alert('Error.')</script>";
             }
     }
-    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
     
 <head>
+    <!-- Chatbot -->
+    <script type="text/javascript">
+    (function(d, m){
+        var kommunicateSettings = 
+            {"appId":"2fec22df3fb4913a9d0b4627b2e3148bc","popupWidget":true,"automaticChatOpenOnNavigation":true};
+        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+        window.kommunicate = m; m._globals = kommunicateSettings;
+    })(document, window.kommunicate || {});
+/* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
+</script>
+
+
     <!-- basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -340,6 +355,7 @@
                 <div><?php echo $rows['product_title'];?></div>
                 <div><?php echo $rows['product_description'];?></div>
                 <div>ram: <?php echo $rows['ram'];?></div>
+                <?php $nr=$rows['qty'];?>
                 <div>processor: <?php echo $rows['processor'];?></div>
                 <div>price: <?php echo $rows['product_price'];?>/-</div>
                 <form method="post" action="" enctype="multipart/form-data" id="signup">
@@ -347,7 +363,18 @@
                 <input type="hidden" name="product_title" id="product_title" value="<?php echo $rows['product_title']; ?>">
                 <input type="hidden" name="product_image1" id="product_image1" value="<?php echo $rows['product_image1']; ?>">
                 <input type="hidden" name="product_price" id="product_price" value="<?php echo $rows['product_price']; ?>">
-                <div><input type="submit" value="Add to cart" id="cart" style="background-color:grey;" name="cart" class="btn">
+                <div>
+                <?php 
+                     if($nr==0){
+                   ?>
+                      <span style="color:red;"> Out of Stock</span>
+                <?php
+                    }else{
+                   ?>     
+                <input type="submit" value="Add to cart" id="cart" style="background-color:grey;" name="cart" class="btn">
+                <?php
+                    }
+                   ?>  
                 <?php $nm=$rows['product_title'];
                         $wish=mysqli_query($con,"SELECT * FROM wishlist WHERE name='$nm'");
             
@@ -363,9 +390,14 @@
                     }?>
                 </div>
                 <a href="checkout1.php" style=" font-size:20px;">Buy now</a></li>
-
+               <?php if($nr==2){
+                   ?>
+                      <span style="color:red;"> Only 2 Stock Left</span>
+                <?php
+                    }
+                   ?>
                 </form>
-        </div>
+                </div>
         <?php
                 }
             ?>

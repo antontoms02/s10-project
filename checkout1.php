@@ -58,7 +58,7 @@ if(isset($_POST['submit']))
                     </button>
 
                     <a class="navbar-brand" href="index.html">
-                    <strong><span>ElitBuilder</span> Store</strong>
+                    <strong><span>TESLA</span></strong>
                     </a>
 
                     <div class="d-lg-none">
@@ -270,6 +270,7 @@ window.onclick = function(event) {
                     <select name="payment_mode" class="form-control" required>
                         <option value="" selected disabled>-Select Payment Mode-</option>
                         <option value="1">Cash On Delivery</option>
+                        <option value="2">UPI</option>
                     </select>
                 </div>
                 <div class="form-group">
