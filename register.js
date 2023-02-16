@@ -3,7 +3,8 @@ const emailEl = document.querySelector('#email');
 const passwordEl = document.querySelector('#password');
 const confirmPasswordEl = document.querySelector('#confirm-password');
 const phnoEl = document.querySelector('#phno');
-
+const pinE = document.querySelector('#pincode');
+const addressE = document.querySelector('#address');
 const form = document.querySelector('#signup');
 
 
@@ -26,7 +27,27 @@ const checkUsername = () => {
     }
     return valid;
 };
+const city_name = () => {
 
+    let valid = false;
+
+    const min = 3,
+        max = 10;
+
+    const address = addressE.value.trim();
+
+    if (!isRequired(address)) {
+        showError(addressE, 'City Name cannot be blank.');
+    } else if (!isBetween(address.length, min, max)) {
+        showError(addressE, 'City Name must be between 3 and 10 characters.')
+    }else if (!isNaN(address)) {
+        showError(addressE, 'Enter Charecter only')
+    }else {
+        showSuccess(addressE);
+        valid = true;
+    }
+    return valid;
+};
 
 const checkEmail = () => {
     let valid = false;
@@ -75,6 +96,19 @@ const checkConfirmPassword = () => {
         valid = true;
     }
 
+    return valid;
+};
+const checkPin= () => {
+    let valid = false;
+    const pincode = pinE.value.trim();
+    if (!isRequired(pincode)) {
+        showError(pinE, 'pin cannot be blank.');
+    } else if (!isPinValid(pincode)) {
+        showError(pinE, 'pin is not valid.')
+    } else {
+        showSuccess(pinE);
+        valid = true;
+    }
     return valid;
 };
 const checkPhno = () => {
@@ -140,11 +174,15 @@ form.addEventListener("submit", function(e) {
         isEmailValid = checkEmail(),
         isPhnoValid = checkPhno(),
         isPasswordValid = checkPassword(),
-        isConfirmPasswordValid = checkConfirmPassword();
+        isConfirmPasswordValid = checkConfirmPassword(),
+        isaddressvalid=city_name(),
+        ispinvalid=checkPin();
     let isFormValid = isUsernameValid &&
         isEmailValid &&
         isPasswordValid &&
         isConfirmPasswordValid &&
+        isaddressvalid &&
+        ispinvalid&&
         isPhnoValid;
 
     // submit to the server if the form is valid
@@ -189,6 +227,12 @@ form.addEventListener('input', debounce(function(e) {
             break;
         case 'phno':
             checkPhno();
+            break;
+         case 'address':
+            city_name();
+            break; 
+        case 'pincode':
+            checkPin();
             break;
     }
 }));

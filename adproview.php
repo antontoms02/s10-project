@@ -41,7 +41,7 @@ session_start();
 <body>
 <section class="header">
         <div class="logo">
-        <h2>RAZER</h2>
+        <h2>TESLA</h2>
         </div>
         <div class="search--notification--profile">
                 <div>
@@ -53,39 +53,54 @@ session_start();
         <div class="sidebar">
             <ul class="sidebar--items">
             <li>
-                    <a href="admindashboard.php" >
+                    <a href="admindashboard.php" id="active--link">
                         <span class="icon icon-1"><i class="ri-admin-line"></i></span>
                         <span class="sidebar--item"> Admin Dashboard</span>
                     </a>
                 </li>
                 
                 <li>
-                    <a href="req_view.php">
-                        <span class="icon icon-2"><i class="ri-user-add-line"></i></span>
-                        <span class="sidebar--item">Sellers</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="add_category.php">
-                        <span class="icon icon-3"><i class="ri-user-add-line"></i></span>
-                        <span class="sidebar--item">Add Category</span>
+                <a href="add_category.php">
+                        <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Add category</span>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_brands.php">
+                <a href="insert_brands.php">
+                        <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Add brands</span>
+                    </a>
+                </li>
+                <li>
+                   <a href="products.php">
+                        <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Add products</span>
+                    </a>
+                </li>
+                <li>
+                   <a href="adproview.php">
+                        <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">View Products</span>
+                    </a>
+                </li>
+                <li>
+                   <a href="update_stock.php" >
+                        <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Stock Updation</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_order.php" >
                         <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
-                        <span class="sidebar--item">Add Brands</span>
+                        <span class="sidebar--item">Manage Order</span>
                     </a>
                 </li>
                 <li>
-                    <a href="product_admin.php" id="active--link">
+                    <a href="datavisualization.php" >
                         <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
-                        <span class="sidebar--item">Manage Product</span>
+                        <span class="sidebar--item">current stock</span>
                     </a>
                 </li>
-            </ul>
-            <ul class="sidebar--bottom-items">
                 <li>
                     <a href="logout.php ">
                         <span class="icon icon-8"><i class="ri-logout-box-r-line"></i></span>

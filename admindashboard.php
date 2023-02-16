@@ -43,7 +43,7 @@
         <div class="sidebar">
             <ul class="sidebar--items">
                 <li>
-                    <a href="#" id="active--link">
+                    <a href="admindashboard.php" id="active--link">
                         <span class="icon icon-1"><i class="ri-admin-line"></i></span>
                         <span class="sidebar--item"> Admin Dashboard</span>
                     </a>
@@ -64,7 +64,7 @@
                 <li>
                    <a href="products.php">
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
-                        <span class="sidebar--item">Add PRODUCT</span>
+                        <span class="sidebar--item">Add products</span>
                     </a>
                 </li>
                 <li>
@@ -83,6 +83,12 @@
                     <a href="admin_order.php" >
                         <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">Manage Order</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="datavisualization.php" >
+                        <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">current stock</span>
                     </a>
                 </li>
                 <li>

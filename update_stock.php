@@ -54,12 +54,12 @@ include('connection.php');
             <ul class="sidebar--items">
             <li>
             <li>
-                    <a href="admindashboard.php" >
+                    <a href="admindashboard.php" id="active--link">
                         <span class="icon icon-1"><i class="ri-admin-line"></i></span>
                         <span class="sidebar--item"> Admin Dashboard</span>
                     </a>
                 </li>
-                   
+                
                 <li>
                 <a href="add_category.php">
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
@@ -67,7 +67,7 @@ include('connection.php');
                     </a>
                 </li>
                 <li>
-                <a href="insert_brands.php" >
+                <a href="insert_brands.php">
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">Add brands</span>
                     </a>
@@ -79,9 +79,27 @@ include('connection.php');
                     </a>
                 </li>
                 <li>
-                   <a href="update_stock.php" id="active--link">
+                   <a href="adproview.php">
+                        <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">View Products</span>
+                    </a>
+                </li>
+                <li>
+                   <a href="update_stock.php" >
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">Stock Updation</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_order.php" >
+                        <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Manage Order</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="datavisualization.php" >
+                        <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">current stock</span>
                     </a>
                 </li>
                 <li>

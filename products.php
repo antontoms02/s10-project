@@ -83,7 +83,7 @@ if(isset($_POST['insert_product'])){
     <body class="bg-light">
     <section class="header">
         <div class="logo">
-        <h2>tesla</h2>
+        <h2>TESLA</h2>
         </div>
         <div class="search--notification--profile">
                 <div>
@@ -95,12 +95,11 @@ if(isset($_POST['insert_product'])){
     <section class="main">
         <div class="sidebar">
             <ul class="sidebar--items">
-                <li>
-                    <a href="admindashboard.php" >
+            <li>
+                    <a href="admindashboard.php" id="active--link">
                         <span class="icon icon-1"><i class="ri-admin-line"></i></span>
-                        <span class="sidebar--item">admin Dashboard</span>
+                        <span class="sidebar--item"> Admin Dashboard</span>
                     </a>
-                </li>
                 <li>
                 <a href="add_category.php">
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
@@ -114,14 +113,35 @@ if(isset($_POST['insert_product'])){
                     </a>
                 </li>
                 <li>
-                <li>
-                    <a href="insert_product.php" id="active--link">
+                   <a href="products.php">
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
-                        <span class="sidebar--item">Add Product</span>
+                        <span class="sidebar--item">Add PRODUCT</span>
                     </a>
                 </li>
-            </ul>
-            <ul class="sidebar--bottom-items">
+                <li>
+                   <a href="adproview.php">
+                        <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">View Products</span>
+                    </a>
+                </li>
+                <li>
+                   <a href="update_stock.php" >
+                        <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Stock Updation</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_order.php" >
+                        <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Manage Order</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="datavisualization.php" >
+                        <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">current stock</span>
+                    </a>
+                </li>
                 <li>
                     <a href="logout.php ">
                         <span class="icon icon-8"><i class="ri-logout-box-r-line"></i></span>

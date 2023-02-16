@@ -89,7 +89,7 @@
                         <span class="sidebar--item"> Admin Dashboard</span>
                     </a>
                 </li>
-                   
+                
                 <li>
                 <a href="add_category.php">
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
@@ -105,7 +105,13 @@
                 <li>
                    <a href="products.php">
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
-                        <span class="sidebar--item">Add PRODUCT</span>
+                        <span class="sidebar--item">Add products</span>
+                    </a>
+                </li>
+                <li>
+                   <a href="adproview.php">
+                        <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">View Products</span>
                     </a>
                 </li>
                 <li>
@@ -115,9 +121,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="admin_order.php">
+                    <a href="admin_order.php" >
                         <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">Manage Order</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="datavisualization.php" >
+                        <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">current stock</span>
                     </a>
                 </li>
                 <li>

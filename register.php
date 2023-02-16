@@ -157,6 +157,6 @@ echo "<script> alert('A verification code has been send to your email')</script>
             </p>
         </form>
     </div>
-    
+    <script src=register.js></script>
 </body>
 </html>
