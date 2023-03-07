@@ -1,7 +1,27 @@
 <?php
-include('connection.php');
-if(isset($_POST['insert_brand'])){
-    $brand_title=$_POST['brand_title'];
+     session_start();
+     if(!isset($_SESSION["email"])) 
+     {
+         header("Location:login.php");
+     }
+    // Username is root
+    $user = 'root';
+    $password = '';
+     
+    // Database name is registration
+    $database = 'tesla';
+    $servername='localhost';
+    $mysqli = new mysqli($servername, $user,
+                    $password, $database);
+     
+    // Checking for connections
+    if ($mysqli->connect_error) {
+        die('Connect Error (' .
+        $mysqli->connect_errno . ') '.
+        $mysqli->connect_error);
+    }
+    if(isset($_POST['insert_cat'])){
+        $category_title=$_POST['cd'];
   
     //select data from database
     $select_query="select * from tbl_brands where brand_title='$brand_title'";
@@ -18,6 +38,11 @@ if(isset($_POST['insert_brand'])){
     }
   }
 }
+
+$sql="SELECT * FROM `tbl_brands` WHERE status=1";
+$sql1="SELECT * FROM `tbl_brands` WHERE status=0";
+$result = $mysqli->query($sql);
+$result1 = $mysqli->query($sql1);
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -134,6 +159,62 @@ if(isset($_POST['insert_brand'])){
                     </tr>
                     </table>
 </form>
+<h3>brands Management</h3>
+        <div class="table">
+                    <table>
+                        <thead>
+                            <tr>
+                            <th >brand_title</th>
+                            <th >Manage</th>
+                            </tr>
+                        </thead>
+                       <!-- PHP CODE TO FETCH DATA FROM ROWS-->
+            <?php
+                // LOOP TILL END OF DATA
+                while($rows=$result->fetch_assoc())
+                {
+            ?>
+            <tr>
+                <!-- FETCHING DATA FROM EACH
+                    ROW OF EVERY COLUMN -->
+                <td><?php echo $rows['category_title'];?></td>
+                <td><a href="cat_remove.php?brand_id=<?php echo $rows['brand_id'];?>"><button style="color: White; background-color:red;">Deactivate</button></a></tb>
+            </tr>
+            <?php
+                }
+            ?>
+         </table>
+
+         <h3>Removed brands</h3>
+         <table>
+                    <thead>
+                    <thead>
+                            <tr>
+                            <th >brand_title</th>
+                            <th >Manage</th>
+                            </tr>
+                        </thead>
+                    <!-- PHP CODE TO FETCH DATA FROM ROWS -->
+            <?php
+                // LOOP TILL END OF DATA
+                while($rows=$result1->fetch_assoc())
+                {
+            ?>
+            <tr>
+                <!-- FETCHING DATA FROM EACH
+                    ROW OF EVERY COLUMN -->
+                <td><?php echo $rows['brand_title'];?></td>
+                <td><a href="update_cat.php?brand_id=<?php echo $rows['brand_id'];?>"><button style="color: White; background-color:green;">Activate</button></a></tb>
+            </tr>
+            <?php
+                }
+            ?>
+         </table>
+        </div> 
+    </section>
+</body>
+
+</html>
         
 
 

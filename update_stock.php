@@ -119,9 +119,9 @@ include('connection.php');
         <table>
                         <thead>
                             <tr>
-                            <th>Product_image</th>
-                            <th >Proudect_Title</th>
-                            <th>Current_Stock</th>
+                            <th>Product image</th>
+                            <th >Product Title</th>
+                            <th>Current Stock</th>
                             <th>Update</th>
                             <th>Manage</th>
                             <th></th>
