@@ -3,6 +3,7 @@
 session_destroy();
 header('location:index.html');
 ?><?php
+#Logout Function
 	session_start();
 	session_destroy();
 
