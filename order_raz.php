@@ -24,7 +24,7 @@ while($row = mysqli_fetch_array($che))
     mysqli_query($con,"UPDATE `tbl_products` SET `qty`='$qt' WHERE product_title='$title';");
 }
 }
-$insert_products="INSERT INTO `order_items`(product_title,address,date,img,quantity,price) VALUES ('$title','$address',NOW(),'$image','$qty','$price')";
+$insert_products="INSERT INTO `order_items`(product_title,email,address,date,img,quantity,price) VALUES ('$title','$reg','$address',NOW(),'$image','$qty','$price')";
 $result_query=mysqli_query($con,$insert_products);
 
 $msg1 = "SELECT * FROM `register` WHERE `email`='$reg'";
@@ -43,7 +43,7 @@ $endpoint_url = "https://us.sms.api.sinch.com/xms/v1/{$service_plan_id}/batches"
 // Set SMS data
 $from = '+447520650965';
 $to = $user_phone;
-$body ='Order placed successfully '.$reg;
+$body ='Greetings from TESLA Electronics, Dear customer your Order is placed successfully '.$reg;
     
 // Set POST data
 $data = array(

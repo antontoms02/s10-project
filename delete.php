@@ -2,7 +2,7 @@
 include 'connection.php';
 $id = $_GET['id']; // get id through query string
  
-$del = mysqli_query($con,"UPDATE `tbllogin` SET `status`=0 WHERE id=$id;"); // update query
+$del = mysqli_query($con,"UPDATE `register` SET `status`=0 WHERE id=$id;"); // update query
 
 if($del)
 {

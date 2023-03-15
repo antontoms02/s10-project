@@ -1,6 +1,7 @@
 <?php 
 include 'connection.php';
-$sql="SELECT * FROM order_items";
+$reg=$_SESSION['email'];
+$sql="SELECT * FROM order_items WHERE email='$reg'";
 $result = mysqli_query($con,$sql);
 $total=0;
 ?>
