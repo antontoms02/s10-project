@@ -1,5 +1,4 @@
 <?php
-
  include 'connection.php';
  include 'google_translater.php';
  
@@ -43,7 +42,7 @@
     <script type="text/javascript">
     (function(d, m){
         var kommunicateSettings = 
-            {"appId":"2fec22df3fb4913a9d0b4627b2e3148bc","popupWidget":true,"automaticChatOpenOnNavigation":true};
+            {"appId":"f11812c06b002fe324a17cc078c7d893","popupWidget":true,"automaticChatOpenOnNavigation":true};
         var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
         s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
         var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
@@ -220,8 +219,26 @@
           }
         }
         </script>
-                                        <li class="last">
-                                            <a href="#"><img src="images/search_icon.png" alt="icon" /></a>
+                                        <!-- <li class="last">
+                                            <a href="#"><img src="images/search_icon.png" alt="icon" /></a> -->
+                                            <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+<script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="scripts/flot/jquery.flot.js" type="text/javascript"></script>
+ <script src="scripts/datatables/jquery.dataTables.js"></script> 
+<script>
+$(document).ready(function() {
+$('.datatable-1').dataTable({
+"pageLength": 5,
+"lengthMenu": [5, 10, 20, 25, 50]
+});
+$('.dataTables_paginate').addClass("btn-group datatable-pagination");
+$('.dataTables_paginate > a').wrapInner('<span />');
+$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
+$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+});
+
+    </script>
                                         </li>
                                     </ul>
                                 </nav>
@@ -232,18 +249,36 @@
                         <div class="location_icon_bottum">
                             <ul>
                                 <li><img src="icon/call.png" />(+91) 6282987602</li>
-                                <li><img src="icon/email.png" />tesla@gmail.com</li>
-                                <li><img src="icon/loc.png" />Location</li>
+                                <li class="nav-item" ><a class="nav-link" style="color:white;" href="feedback.php">feedback</a></li>
+                                <!-- <li class="nav-item">
+                                <a class="nav-link" href="feedback.php">cart</a>
+                            </li> -->
+                                <li><img src="icon/loc.png" /></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="search-box">
+                        <div class="input-group">
+                        <form method="get" action="service-search.php">
+                            <div class="form-outline form">
+                            
+                                <input type="search" autocomplete="off" class="form-control" id="search-input" placeholder="Search Services..." name="attribute" />
+                            </div>
+                        
+                            <button type="submit"class="btn btn-primary" name="search_sub" value="search" id="search-form">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                        </div>
+                        <div id="search-results" style="background-color:white"></div>
+                    </div>
         <!-- end header inner -->
     </header>
 
-< b 
+
     <!-- end header -->
     <section class="slider_section">
         <div id="myCarousel" class="carousel slide banner-main" data-ride="carousel">
@@ -333,7 +368,7 @@
     <!-- end about -->
 
     <!-- brand -->
-    <div class="brand">
+    <div class="brand" >
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -549,6 +584,8 @@
     <!-- javascript -->
     <script src="js/owl.carousel.js"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" 
+    integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(document).ready(function() {
             $(".fancybox").fancybox({
@@ -564,7 +601,44 @@
                 $(this).removeClass('transition');
             });
         });
-    </script>
+        </script>
+        <script>
+            $(document).ready(function(){
+  $("#search-input").keyup(function(){
+    var search = $(this).val();
+    if(search=="")
+    {
+        data="";
+        $("#search-results").html(data)
+    }
+    else{
+        $.ajax({
+      url: "search.php",
+      method: "post",
+      data: {search:search},
+      success: function(data){
+        $("#search-results").html(data);
+      }
+    });
+    }
+});
+    /* 
+            $("#search-form").click(function() {
+          var id=$("#search-input").val();
+          $('.results-item').hide();
+          $.ajax({
+            url: "service_search.php",
+            method: "get",
+            data: {search:id},
+            success: function(data){
+              
+            } 
+          });
+        }); */
+    });
+  
+        </script>
+     
 </body>
     
 </html>

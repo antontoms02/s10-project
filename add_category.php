@@ -91,7 +91,7 @@
                 </li>
                 
                 <li>
-                <a href="add_category.php">
+                <a href="add_category.php" id="active--link">
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">Add category</span>
                     </a>
@@ -130,6 +130,12 @@
                     <a href="datavisualization.php" >
                         <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">current stock</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="feed_view.php" >
+                        <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Feedback</span>
                     </a>
                 </li>
                 <li>

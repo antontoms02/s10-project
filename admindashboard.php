@@ -92,6 +92,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="feed_view.php" >
+                        <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Feedback</span>
+                    </a>
+                </li>
+                <li>
                     <a href="logout.php ">
                         <span class="icon icon-8"><i class="ri-logout-box-r-line"></i></span>
                         <span class="sidebar--item">Logout</span>
@@ -147,6 +153,7 @@
                             </div>
                             <i class="ri-user-line card--icon--lg"></i>
                         </div>
+       
                         <!--
                         <div class="card--stats">
                             <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>82%</span>
@@ -390,7 +397,7 @@ $con->close();
                 </div>
             </div>
         </div>
-        
+       
     </section>
     <script src="admin.js"></script>
 </body>

@@ -99,7 +99,7 @@ session_start();
                     </a>
                 </li>
                 <li>
-                    <a href="admin_order.php" >
+                    <a href="admin_order.php" id="active--link">
                         <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">Manage Order</span>
                     </a>
@@ -108,6 +108,12 @@ session_start();
                     <a href="datavisualization.php" >
                         <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">current stock</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="feed_view.php" >
+                        <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Feedback</span>
                     </a>
                 </li>
                 <li>
@@ -128,9 +134,11 @@ session_start();
                         <thead>
                             <tr>
                             <th>Product_image</th>
-                            <th >Proudect_Title</th>
+                            <th >Product_Title</th>
+                            <th >address</th>
                             <th>Quantity</th>
                             <th>Product_Price</th>
+                            <th >date</th>
                             <th>Purchase</th>
                             </tr>
                         </thead>
@@ -143,8 +151,10 @@ session_start();
             <tr>
                  <td><img src="product_images/<?php echo $rows['img'];?>" width="90px" height="50px"></td>
                 <td><?php echo $rows['product_title'];?></td>
+                <td><?php echo $rows['address'];?></td>
                 <td><?php echo $rows['quantity'];?></td>
                 <td><?php echo $rows['price'];?></td>
+                <td><?php echo $rows['date'];?></td>
                 <td><?php echo $rows['status'];?></td>
                 <?php if($rows['status']!="Canceled" AND $rows['status']!="Delivered"){ ?>
                 <form method="post" action="" enctype="multipart/form-data" id="signup">

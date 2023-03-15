@@ -113,7 +113,7 @@ if(isset($_POST['insert_product'])){
                     </a>
                 </li>
                 <li>
-                   <a href="products.php">
+                   <a href="products.php"id="active--link">
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">Add PRODUCT</span>
                     </a>
@@ -140,6 +140,12 @@ if(isset($_POST['insert_product'])){
                     <a href="datavisualization.php" >
                         <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">current stock</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="feed_view.php" >
+                        <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Feedback</span>
                     </a>
                 </li>
                 <li>
@@ -265,6 +271,24 @@ if(isset($_POST['insert_product'])){
                     <input type="submit" name="insert_product" class="btn btn-info mb-3 px-3" value="ADD PRODUCT">
                 </div>
             </form>
+            <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+<script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="scripts/flot/jquery.flot.js" type="text/javascript"></script>
+ <script src="scripts/datatables/jquery.dataTables.js"></script> 
+<script>
+$(document).ready(function() {
+$('.datatable-1').dataTable({
+"pageLength": 5,
+"lengthMenu": [5, 10, 20, 25, 50]
+});
+$('.dataTables_paginate').addClass("btn-group datatable-pagination");
+$('.dataTables_paginate > a').wrapInner('<span />');
+$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
+$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+});
+
+</script>
         </div>
         </div>
     </section>

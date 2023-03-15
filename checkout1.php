@@ -25,6 +25,60 @@ if(isset($_POST['submit']))
      $email=mysqli_real_escape_string($con,$_POST['email']);
      $value=mysqli_real_escape_string($con,$_POST['payment_mode']);
      $qur1 = mysqli_query($con,"UPDATE register SET name='$name',address='$address',mob='$mob',email='$email'  where email='$reg'");
+
+
+
+
+     $msg1 = "SELECT * FROM `register` WHERE `email`='$reg'";
+    $msg_qry = mysqli_query($con, $msg1);
+    while ($rows = mysqli_fetch_array($msg_qry)) {
+    $user_phone=$rows['mob'];
+    }
+
+
+// Set API credentials and endpoint URL
+$api_token = '0c25d9447f1f4321a9c2c1b429db02e1';
+$service_plan_id = 'c0bd359830334c36a25b155395964a01';
+$endpoint_url = "https://us.sms.api.sinch.com/xms/v1/{$service_plan_id}/batches";
+
+// Set SMS data
+$from = '+447520650965';
+$to = $user_phone;
+$body = 'Order placed successfully';
+
+// Set POST data
+$data = array(
+    'from' => $from,
+    'to' => array($to),
+    'body' => $body
+);
+$post_data = json_encode($data);
+
+// Set cURL options
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $endpoint_url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    "Authorization: Bearer {$api_token}",
+    "Content-Type: application/json"
+));
+
+// Send request and get response
+$response = curl_exec($ch);
+
+
+// Process response
+/* if ($response) {
+    $response_data = json_decode($response, true);
+    echo "SMS sent! Message ID:{$response_data['id']}";
+} else {
+    echo "Error sending SMS: " . curl_error($ch);
+} */
+curl_close($ch);
+
+
      if ( $qur1 === TRUE AND $value == "1"){
     header("location:order_add.php"); 
      }
@@ -287,7 +341,7 @@ $apiKey="rzp_test_qtBC0Y9QLqd8pl";
 
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
-<form action="" method="POST">
+<form action="order_raz.php" method="POST">
 <script
     src="https://checkout.razorpay.com/v1/checkout.js"
     data-key="<?php echo $apiKey; ?>" // Enter the Test API Key ID generated from Dashboard → Settings → API Keys

@@ -1,8 +1,10 @@
 <?php
-     session_start();
+
+    //  session_start();
+     include 'connection.php';
      if(!isset($_SESSION["email"])) 
      {
-         header("Location:login.php");
+         header("Location:login2.php");
      }
     // Username is root
     $user = 'root';
@@ -30,20 +32,29 @@
     if($number>0){
       echo "<script>alert('This brand is present inside the database.')</script>";
     }else{
-  
-    $insert_query ="INSERT INTO `tbl_brands`( `brand_title`) VALUES ('$brand_title')";
+    $insert_query ="INSERT INTO `tbl_brands`( `brand_title`,') VALUES ('$brand_title')";
     $result=mysqli_query($con,$insert_query);
     if($result){
       echo "<script>alert('Brand has been inserted successfully')</script>";
-    }
-  }
-}
-
-$sql="SELECT * FROM `tbl_brands` WHERE status=1";
+    }}}
+$sql="SELECT * FROM `tbl_brands` WHERE  status=1";
 $sql1="SELECT * FROM `tbl_brands` WHERE status=0";
 $result = $mysqli->query($sql);
 $result1 = $mysqli->query($sql1);
-?> 
+
+
+if(isset($_POST['act'])){
+    $id = $_POST['act']; // get id through query string
+$del = mysqli_query($con,"UPDATE `tbl_brands` SET `status`=1 WHERE brand_id='$id'");
+}
+
+if(isset($_POST['dactivate'])){
+    $id = $_POST['dactivate']; // get id through query string
+    
+$dell = mysqli_query($con,"UPDATE `tbl_brands` SET `status`=0 WHERE brand_id='$id'");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,7 +109,7 @@ $result1 = $mysqli->query($sql1);
                     </a>
                 </li>
                 <li>
-                <a href="insert_brands.php">
+                <a href="insert_brands.php" id="active--link">
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">Add brands</span>
                     </a>
@@ -130,7 +141,13 @@ $result1 = $mysqli->query($sql1);
                 <li>
                     <a href="datavisualization.php" >
                         <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
-                        <span class="sidebar--item">current stock</span>
+                        <span class="sidebar--item">Current Stock</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="feed_view.php" >
+                        <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Feedback</span>
                     </a>
                 </li>
                 <li>
@@ -154,7 +171,7 @@ $result1 = $mysqli->query($sql1);
 						<td ><b>brands</b></td>
 				    </tr> 
                     <tr>
-                    <td><input type="text" name="brand_title" id="cd" autocomplete="off"required></td>
+                    <td><input type="text" name="brand_title" id="cd" autocomplete="off"></td>
                     <td><input type="submit" value="Add" id="btn" name="insert_brand"  class="btn"></td>
                     </tr>
                     </table>
@@ -171,20 +188,22 @@ $result1 = $mysqli->query($sql1);
                        <!-- PHP CODE TO FETCH DATA FROM ROWS-->
             <?php
                 // LOOP TILL END OF DATA
-                while($rows=$result->fetch_assoc())
+                while($row=$result->fetch_assoc())
                 {
             ?>
             <tr>
                 <!-- FETCHING DATA FROM EACH
                     ROW OF EVERY COLUMN -->
-                <td><?php echo $rows['category_title'];?></td>
-                <td><a href="cat_remove.php?brand_id=<?php echo $rows['brand_id'];?>"><button style="color: White; background-color:red;">Deactivate</button></a></tb>
+                <td><?php echo $row['brand_title'];?></td>
+                <form action="#" method="POST">
+                <td><button type="submit" value="<?php echo $row['brand_id'];?>" name="dactivate" style="color: White; background-color:red;">deactivate</button></td>
+                </form>
             </tr>
             <?php
                 }
             ?>
          </table>
-
+  
          <h3>Removed brands</h3>
          <table>
                     <thead>
@@ -197,14 +216,16 @@ $result1 = $mysqli->query($sql1);
                     <!-- PHP CODE TO FETCH DATA FROM ROWS -->
             <?php
                 // LOOP TILL END OF DATA
-                while($rows=$result1->fetch_assoc())
+                while($row=$result1->fetch_assoc())
                 {
             ?>
             <tr>
                 <!-- FETCHING DATA FROM EACH
                     ROW OF EVERY COLUMN -->
-                <td><?php echo $rows['brand_title'];?></td>
-                <td><a href="update_cat.php?brand_id=<?php echo $rows['brand_id'];?>"><button style="color: White; background-color:green;">Activate</button></a></tb>
+                <td><?php echo $row['brand_title'];?></td>
+                <form action="#" method="POST">
+                <td><button type="submit" value="<?php echo $row['brand_id'];?>" name="act" style="color: White; background-color:green;">Activate</button></td>
+                </form>
             </tr>
             <?php
                 }

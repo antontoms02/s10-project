@@ -101,15 +101,19 @@ font-weight:bold;
           foreach($res as $data)
           {
             $email=$data['email'];
+            $id=$data['id'];
             $password=$data['password'];
             $role=$data['role'];
             $status=$data['status'];
             $code=$data['code'];
+            $name=$data['username'];
             
           }
           if(empty($data['code']))
           {
           $_SESSION['email'] = $email;
+          $_SESSION['username'] = $name;
+
           $_SESSION['msg']="Login Successful. ";
           echo "<p id='d'>" .$_SESSION['msg']."</p>" ;
 

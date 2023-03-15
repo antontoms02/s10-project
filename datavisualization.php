@@ -69,7 +69,7 @@
         <div class="sidebar">
             <ul class="sidebar--items">
                 <li>
-                    <a href="#" id="active--link">
+                    <a href="admindashboard.php" >
                         <span class="icon icon-1"><i class="ri-admin-line"></i></span>
                         <span class="sidebar--item"> Admin Dashboard</span>
                     </a>
@@ -112,9 +112,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="datavisualization.php" >
+                    <a href="datavisualization.php" id="active--link" >
                         <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">current stock</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="feed_view.php" >
+                        <span class="icon icon-4"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Feedback</span>
                     </a>
                 </li>
                 <li>

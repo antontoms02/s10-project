@@ -1,18 +1,30 @@
 <?php
-include('connection.php');
-  $sql="SELECT * FROM  tbl_products";
-  $result = mysqli_query($con,$sql);
-  if(isset($_POST['stock'])){
-      $product_title=$_POST['product_title'];
-      $qty=$_POST['Quatity'];
-      $quantity=$qty + $_POST['qty'];
-      $insert_products="UPDATE `tbl_products` SET qty='$quantity' WHERE product_title='$product_title';";
-      $result_query=mysqli_query($con,$insert_products);
-      if($result_query){
-          echo "<script>alert('Stock Updated.')</script>";
-      }
-  }
-?> 
+session_start();
+    if(!isset($_SESSION["email"])) 
+    {
+        header("Location:login2.php");
+    }
+    // Username is root
+    $user = 'root';
+    $password = '';
+     
+    // Database name is registration
+    $database = 'tesla';
+    $servername='localhost';
+    $mysqli = new mysqli($servername, $user,
+                    $password, $database);
+     
+    // Checking for connections
+    if ($mysqli->connect_error) {
+        die('Connect Error (' .
+        $mysqli->connect_errno . ') '.
+        $mysqli->connect_error);
+    }
+    $id = $_GET['product_id'];
+    $sql="SELECT * FROM tbl_products where product_id='$id'";
+    $result = $mysqli->query($sql);
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,24 +34,14 @@ include('connection.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="adminstyle.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <title>Dashboard</title>
     <style>
-     .table {
-    text-align: left;
-    }
-    #cd{
-      height:30px;
-      width: 300px;
-    }
-    #btn{
-     padding:10px;
-     background-color:mediumblue;
-     color:white;
-    }
-    </style>
+
+    </style>   
 </head>
 
 <body>
-    <section class="header">
+<section class="header">
         <div class="logo">
         <h2>TESLA</h2>
         </div>
@@ -50,9 +52,8 @@ include('connection.php');
         </div>
     </section>
     <section class="main">
-        <div class="sidebar"> 
+        <div class="sidebar">
             <ul class="sidebar--items">
-            <li>
             <li>
                     <a href="admindashboard.php" id="active--link">
                         <span class="icon icon-1"><i class="ri-admin-line"></i></span>
@@ -75,17 +76,17 @@ include('connection.php');
                 <li>
                    <a href="products.php">
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
-                        <span class="sidebar--item">Add PRODUCT</span>
+                        <span class="sidebar--item">Add products</span>
                     </a>
                 </li>
                 <li>
-                   <a href="adproview.php">
+                   <a href="adproview.php"id="active--link">
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">View Products</span>
                     </a>
                 </li>
                 <li>
-                   <a href="update_stock.php" id="active--link">
+                   <a href="update_stock.php" >
                         <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
                         <span class="sidebar--item">Stock Updation</span>
                     </a>
@@ -118,46 +119,71 @@ include('connection.php');
         </div>
         
         <div class="main--content">
-        <form action="" method="post" class="mb-2">
-    <div class="input-group w-90 mb-2">
-        <span class="input-group-text bg-info" id="basic-addon1">
-        <i class="fa-solid fa-receipt"></i></span>
-        <table>
+            
+            
+                <div>
+                    <h2 > Product Details</h2>
+                </div>
+                <div class="table">
+                    <table>
                         <thead>
                             <tr>
-                            <th>Product image</th>
-                            <th >Product Title</th>
-                            <th>Current Stock</th>
-                            <th>Update</th>
+                            <th>Product_image</th>
+                            <th >Product_Title</th>
+                            <th >Product_Description</th>
+                            <th>Product_Price</th>
                             <th>Manage</th>
-                            <th></th>
                             </tr>
                         </thead>
                        <!-- PHP CODE TO FETCH DATA FROM ROWS -->
+                       
             <?php
                 // LOOP TILL END OF DATA
                 while($rows=$result->fetch_assoc())
-                {
+        {
             ?>
             <tr>
-                 <td><img src="product_images/<?php echo $rows['product_image1'];?>" width="90px" height="50px"></td>
-                <td><?php echo $rows['product_title'];?></td>
-                <td><?php echo $rows['qty'];?></td>
-                <form method="post" action="" enctype="multipart/form-data" id="signup">
-                <input type="hidden" name="product_title" id="product_title" value="<?php echo $rows['product_title'];?>">
-                <input type="hidden" name="Quatity" id="Quatity" value="<?php echo $rows['qty'];?>">
-                <td>Quantity:<input type="number" min="1" name="qty" id="qty" max=10 value="1"></td>
-                <td><input type="submit" value="Update" class="stock" name="stock"></tb>
-            </tr>
-                </form>
-            <?php
+                 <td><img src="product_images/<?php echo $rows['product_image1'];?>" width="50px" height="50px"></td>
+                 <form action="" method="post" enctype="multipart/form-data">
+                <td><input type="text" name="product_title" id="product_title" class="form-control" 
+                    value="<?php echo $rows['product_title'];?>" autocomplete="off" required></td>
+                    <td><input type="text" name="product_description" id="product_description" class="form-control" 
+                    value="<?php echo $rows['product_description'];?>" autocomplete="off" required></td>
+                    <td><input type="text" name="product_price" id="product_price" class="form-control" 
+                    value="<?php echo $rows['product_price'];?>" autocomplete="off" required></td>
+                    <td><input type="submit" name="insert_product" class="btn btn-info mb-3 px-3" value="CHANGE"></td>
+        </tr>
+       
+       
+            
+        <?php
                 }
-            ?>
-
+            ?>    
+           
          </table>
+         </form>   </div>
+            </div>
+            </div>
+       
+                
+    </section>
+</body>
 
-</form>
-        
+</html>
+<?php 
 
+if(isset($_POST['insert_product'])){
+    $product_title=$_POST['product_title'];
+    $description=$_POST['product_description'];
+    $product_price=$_POST['product_price'];
 
+    $insert_products="UPDATE tbl_products set product_title= '$product_title',product_description= '$description', product_price='$product_price' 
+    WHERE product_id='$id'";
 
+$result_query=mysqli_query($mysqli,$insert_products);
+if($result_query){
+    echo "<script> alert('Product change is successfull ');
+    window.location.href='adproview.php';</script>";
+}
+}
+?>

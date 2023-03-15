@@ -101,6 +101,12 @@
                         <span class="sidebar--item">Change Password</span>
                     </a>
                 </li>
+                <li>
+                    <a href="feedback.php" id="active--link">
+                        <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Feedback</span>
+                    </a>
+                </li>
             </ul>
             <ul class="sidebar--bottom-items">
                 <li>
