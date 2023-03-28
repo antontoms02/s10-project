@@ -3,7 +3,7 @@ include 'connection.php'; // get id through query string
 $total=0;
 $reg=$_SESSION['email'];
 $username=$_SESSION['username'];
-
+// Order function Query to get Cart details
 $del = mysqli_query($con,"SELECT * FROM `tbl_cart`;"); // update query
 $sql=mysqli_query($con,"SELECT * FROM `register` WHERE `email`='$reg';");
 while($row = mysqli_fetch_array($sql))
