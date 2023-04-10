@@ -1,7 +1,11 @@
 <?php
+
+
+// Print page
  include "connection.php";
  $reg=$_SESSION['email'];
  $id=$_GET['id'];
+ 
 if(!isset($_SESSION["email"])) 
 {
    header("Location:../login.php");
