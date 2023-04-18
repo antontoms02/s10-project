@@ -73,6 +73,10 @@ if(isset($_POST['insert_product'])){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <link rel="stylesheet" href="adminstyle.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="jquery-3.2.1.min.js"></script>
+      <script src="validation.js"></script>
       <style>
        .sidebar--items{
         padding:10px 5px;
@@ -168,6 +172,7 @@ if(isset($_POST['insert_product'])){
                     <label for="product_title" class="form-label">Product title</label>
                     <input type="text" name="product_title" id="product_title" class="form-control" 
                     placeholder="Enter product name" autocomplete="off" required>
+                    <span class="error_form" id="fname_error_message"></span>
                 </div>
 
                 <!--product description-->
@@ -175,6 +180,7 @@ if(isset($_POST['insert_product'])){
                     <label for="description" class="form-label">Product description</label>
                     <input type="text" name="description" id="description" class="form-control" 
                     placeholder="Enter product description" autocomplete="off" required>
+                    <span class="error_form" id="dname_error_message"></span>
                 </div>
 
                 <!--product keywords

@@ -285,8 +285,8 @@ $total=0;
                             <td style="font-weight:bold;"><?php echo $rows['status'];?></td>
                          <?php } ?>
                          <?php if( $rows['status']=="Delivered")
-                        { ?>
-                        <td style="font-weight:bold;"><?php echo $rows['status'];?></td> 
+                        { ?> 
+                        <td><a href="print.php?id=<?php echo $rows['id'];?>"><button style="padding:10px;">Recipt</button></a></td>
                         <?php
                         }else if($rows['status']!="Canceled" AND $rows['status']!="Delivered"){ ?>
                 <td><a href="cancel_order.php?id=<?php echo $rows['id'];?>"><button style="padding:10px;">Cancel</button></a></tb>

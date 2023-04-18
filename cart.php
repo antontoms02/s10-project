@@ -1,6 +1,11 @@
 <?php 
 include 'connection.php';
-$sql="SELECT * FROM tbl_cart";
+if(!isset($_SESSION["email"])) 
+{
+    header("Location:login2.php");
+}
+$email=$_SESSION["email"];
+$sql="SELECT * FROM tbl_cart where email='$email'";
 $result = mysqli_query($con,$sql);
 $total=0;
 ?>
@@ -269,7 +274,7 @@ $total=0;
             <ul>
                 <li style="text-align:center;">Grand Total =
                     <span>₹ <?php echo $total;?>/-</span>
-                    <a href="checkout1.php "><button >checkout</button></a>
+                    <a href="checkout1.php "><button id= "btn" name="btn">checkout</button></a>
                 </li>
                 
             </ul>

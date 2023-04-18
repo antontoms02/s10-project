@@ -3,7 +3,7 @@
   <head>
       <title>Login</title>
       <link rel="stylesheet" href="style1.css">
-      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
   </head>
   <body>
     <style>
@@ -44,7 +44,7 @@ font-weight:bold;
       </form>
     </div>
     <script src="https://kit.fontawesome.com/af562a2a63.js" crossorigin="anonymous"></script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript">
  

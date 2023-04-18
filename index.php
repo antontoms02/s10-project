@@ -6,7 +6,7 @@
  {
      header("Location:login2.php");
  }
- 
+ $email=$_SESSION["email"];
  $sql="SELECT * FROM tbl_products WHERE status='true'";
     $result = $con->query($sql);
     if(isset($_POST['cart'])){
@@ -14,7 +14,8 @@
         $product_price=$_POST['product_price'];
         $product_image1=$_POST['product_image1'];
         $quantity=$_POST['cart_quantity'];
-        $insert_products="INSERT INTO `tbl_cart`(Proudect_Title,Product_image,Product_Price,cart_qty) VALUES ('$product_title','$product_image1','$product_price','$quantity')";
+        $total=$product_price * $quantity;
+        $insert_products="INSERT INTO `tbl_cart`(Proudect_Title,Product_image,Product_Price,cart_qty,is_checked_out,email) VALUES ('$product_title','$product_image1','$total','$quantity',0,'$email')";
         $result_query=mysqli_query($con,$insert_products);
         if($result_query){
             echo "<script>alert('Successfully inserted the products.')</script>";
@@ -253,7 +254,7 @@ $('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right sh
                                 <!-- <li class="nav-item">
                                 <a class="nav-link" href="feedback.php">cart</a>
                             </li> -->
-                                <li><img src="icon/loc.png" /></li>
+                                <li class="nav-item" ><a class="nav-link" style="color:white;" href="profile.php"><img src="icon/loc.png"/>Profile</li>
                             </ul>
                         </div>
                     </div>
@@ -265,7 +266,7 @@ $('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right sh
                         <form method="get" action="service-search.php">
                             <div class="form-outline form">
                             
-                                <input type="search" autocomplete="off" class="form-control" id="search-input" placeholder="Search Services..." name="attribute" />
+                                <input type="search" autocomplete="off" class="form-control w-25" id="search-input" placeholder="Search Services..." name="attribute" />
                             </div>
                         
                             <button type="submit"class="btn btn-primary" name="search_sub" value="search" id="search-form">
@@ -386,7 +387,9 @@ $('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right sh
                 {
             ?>
         <div class="col-4">
-        <div><img src="product_images/<?php echo $rows['product_image1'];?>" width="200px" height="300px"></div>
+        <div>
+        <a href="product_details.php?prod=<?=$rows['product_id'];?>"><img src="product_images/<?php echo $rows['product_image1'];?>" width="200px" height="300px"></a></div>
+        <!-- <img src="product_images/<?php /* echo $rows['product_image1']; */?>" width="200px" height="300px"></div> -->
                 <div><?php echo $rows['product_title'];?></div>
                 <div><?php echo $rows['product_description'];?></div>
                 <div>ram: <?php echo $rows['ram'];?></div>

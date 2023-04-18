@@ -107,6 +107,12 @@
                         <span class="sidebar--item">Feedback</span>
                     </a>
                 </li>
+                <li>
+                    <a href="address.php" >
+                        <span class="icon icon-5"><i class="ri-user-add-line"></i></span>
+                        <span class="sidebar--item">Address</span>
+                    </a>
+                </li>
             </ul>
             <ul class="sidebar--bottom-items">
                 <li>
