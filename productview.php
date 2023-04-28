@@ -1,6 +1,7 @@
 <?php 
+//Product View File
+include 'connection.php';
 
-include 'connection.php'; 
 $sql="SELECT * FROM tbl_products WHERE status='true'";
     $result = $con->query($sql);
 ?>

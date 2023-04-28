@@ -9,6 +9,8 @@ use PHPMailer\PHPMailer\Exception;
         die();
     }
 //Load Composer's autoloader
+
+//Php Mailer File
 require 'vendor1/autoload.php';
 include 'connection.php';
 $msg="";
