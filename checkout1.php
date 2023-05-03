@@ -111,7 +111,7 @@ curl_close($ch);
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="index.php">
                     <strong><span>TESLA</span></strong>
                     </a>
 

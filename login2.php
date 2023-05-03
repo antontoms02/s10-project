@@ -3,7 +3,7 @@
   <head>
       <title>Login</title>
       <link rel="stylesheet" href="style1.css">
-      <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+       <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
   </head>
   <body>
     <style>
